@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Scheduler.Resources"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <v:String x:Key="themeBtn">Выбор темы</v:String>
+    <v:String x:Key="languagesBtn">Выбор языка</v:String>
+    <v:String x:Key="addSetBut">+ Добавить запись</v:String>
+    <v:String x:Key="backBut">Назад</v:String>
+    <v:String x:Key="projectName">Планировщик задач</v:String>
+    <v:String x:Key="themeIn">Тема</v:String>
+    <v:String x:Key="opisanieIn">Описание</v:String>
+    <v:String x:Key="dataEl">Выбор даты</v:String>
+    <v:String x:Key="timeEl">Выбор темы</v:String>
+    <v:String x:Key="volumeOn">Звук</v:String>
+    <v:String x:Key="settingBtn">Настройки</v:String>
+    <v:String x:Key="saveBut">Сохранить</v:String>
+
+</ResourceDictionary>
+    
