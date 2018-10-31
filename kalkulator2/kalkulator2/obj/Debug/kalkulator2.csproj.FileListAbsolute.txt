@@ -17,14 +17,14 @@ C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\bin\Debug\kalkulator
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\bin\Debug\kalkulator2.exe
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\bin\Debug\kalkulator2.pdb
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\kalkulator2.csprojAssemblyReference.cache
-C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\MainWindow.g.cs
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\App.g.cs
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\kalkulator2_MarkupCompile.cache
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\kalkulator2_MarkupCompile.lref
-C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\MainWindow.baml
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\kalkulator2.g.resources
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\kalkulator2.Properties.Resources.resources
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\kalkulator2.csproj.GenerateResource.cache
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\kalkulator2.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\kalkulator2.exe
 C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\kalkulator2.pdb
+C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\Kalkulator2Code.g.cs
+C:\Users\User\source\repos\Projects\kalkulator2\kalkulator2\obj\Debug\Kalkulator2Code.baml
