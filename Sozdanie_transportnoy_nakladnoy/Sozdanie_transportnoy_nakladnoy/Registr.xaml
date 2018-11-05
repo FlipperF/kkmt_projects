@@ -1,0 +1,45 @@
+﻿<Window x:Class="Sozdanie_transportnoy_nakladnoy.Registr"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sozdanie_transportnoy_nakladnoy"
+        mc:Ignorable="d"
+        Title="Registr" Height="530" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="285*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="59*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Register" FontSize="48" FontFamily="Tw Cen MT Condensed Extra Bold" Grid.ColumnSpan="2"></Label>
+        <Label Content="Last name" VerticalContentAlignment="Center" Grid.Row="1" FontSize="16"></Label>
+        <Label Content="First name" VerticalContentAlignment="Center" Grid.Row="2" FontSize="16"></Label>
+        <Label Content="Middle name" VerticalContentAlignment="Center" Grid.Row="3" FontSize="16"></Label>
+        <Label Content="Address" VerticalContentAlignment="Center" Grid.Row="4" FontSize="16"></Label>
+        <Label Content="E-mail" VerticalContentAlignment="Center" Grid.Row="5" FontSize="16"></Label>
+        <Label Content="Password" VerticalContentAlignment="Center" Grid.Row="6" FontSize="16"></Label>
+        <Label Content="Phone" VerticalContentAlignment="Center" Grid.Row="7" FontSize="16"></Label>
+
+        <TextBox Name="lastName_tb" Text="" Grid.Row="1" Grid.Column="1" Margin="5,5,50,5"></TextBox>
+        <TextBox Name ="firstName_tb" Text="" Grid.Row="2" Grid.Column="1" Margin="5,5,50,5"></TextBox>
+        <TextBox Name ="middleName_tb" Text="" Grid.Row="3" Grid.Column="1" Margin="5,5,50,5"></TextBox>
+        <TextBox Name ="address_tb" Text="" Grid.Row="4" Grid.Column="1" Margin="5,5,50,5"></TextBox>
+        <TextBox Name ="email_tb" Text="" Grid.Row="5" Grid.Column="1" Margin="5,5,50,5"></TextBox>
+        <TextBox Name ="password_tb" Text="" Grid.Row="6" Grid.Column="1" Margin="5,5,50,5"></TextBox>
+        <TextBox Name ="phone_tb" Text="" Grid.Row="7" Grid.Column="1" Margin="5,5,50,5"></TextBox>
+
+        <Button Name ="regBut" Grid.Row="8" Content="Регистрация" Grid.Column="1" Margin="5,5,115,5" FontSize="18" Grid.RowSpan="2" Click="regBut_Click"></Button>
+    </Grid>
+</Window>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="Sozdanie_transportnoy_nakladnoy.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sozdanie_transportnoy_nakladnoy"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="400">
+    <Grid>
+        <Grid Name="loginGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90*"/>
+                <RowDefinition Height="130*"/>
+                <RowDefinition Height="149*"/>
+            </Grid.RowDefinitions>
+            <Label Name="loginLabel" Margin="20,20,0,0" Content="Login" FontSize="48" FontFamily="Tw Cen MT Condensed Extra Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0"></Label>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="125*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Email" HorizontalContentAlignment="Right" VerticalAlignment="Center" FontSize="20" Margin="0,17,0,7" Height="38"></Label>
+                <TextBox Name="login_tb" VerticalContentAlignment="Center" Grid.Column="1" VerticalAlignment="Center"  Height="46" Margin="10,10,70,1"></TextBox>
+                <Label Content="Password" Grid.Row="1" HorizontalContentAlignment="Right" VerticalAlignment="Center" FontSize="20" Margin="0,25,0,16" Height="40"></Label>
+                <TextBox Name="password_tb" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="46" Margin="10,10,70,0"></TextBox>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="144*"/>
+                </Grid.RowDefinitions>
+                <Button Name ="openRegWinBut" Content="Registr" Margin="120,0,120,130" FontSize="16" Background="#00DDDDDD" BorderBrush="#00EA7676" Click="registerWInOpen" Foreground="#DD000000" Height="Auto" Grid.RowSpan="2"></Button>
+                <Button Name="login_but" Content="Login" Grid.Row="1" Margin="120,40,120,50" Click="login_but_Click"></Button>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>
