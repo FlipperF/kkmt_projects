@@ -25,6 +25,9 @@ namespace Sozdanie_transportnoy_nakladnoy
 
         private void regBut_Click(object sender, RoutedEventArgs e)
         {
+            Login.connect.Close();
+
+            Login.connect.Open();
             lnameToDB = lastName_tb.Text;
             fnameToDB = firstName_tb.Text;
             mnameToDB = middleName_tb.Text;
@@ -40,9 +43,18 @@ namespace Sozdanie_transportnoy_nakladnoy
             }
             else
             {
+                
                 userr = "select email from users where email = '" +emailToDB + "';";
-                MySqlCommand checkCommand = new MySqlCommand(userr,MainWindow.connect);
-                checkUser = checkCommand.ExecuteScalar().ToString();
+                MySqlCommand checkCommand = new MySqlCommand(userr,Login.connect);
+
+                MySqlDataReader reader = checkCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string Word = reader.GetValue(0).ToString();
+                    checkUser = Word;
+                }
+                reader.Close();
 
                 if (checkUser != "")
                 {
@@ -54,11 +66,11 @@ namespace Sozdanie_transportnoy_nakladnoy
                     string adduser = @"INSERT INTO users(f_name,l_name,m_name,email,password,phone_numb) VALUES ('" + fnameToDB + "','" + lnameToDB + "','"
                                                                                                                    + mnameToDB + "','" + emailToDB + "','"
                                                                                                                    + passwordToDB + "','" + phoneNumbToDB + "')";
-                    MySqlCommand commandAdd = new MySqlCommand(adduser, MainWindow.connect);
+                    MySqlCommand commandAdd = new MySqlCommand(adduser, Login.connect);
                     commandAdd.ExecuteNonQuery();
-                    MainWindow.connect.Close();
 
                     this.Hide();
+                    Login.connect.Close();
                 }
             }
         }

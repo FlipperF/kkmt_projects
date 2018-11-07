@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using MySql.Data.MySqlClient;
 
 namespace Sozdanie_transportnoy_nakladnoy
@@ -6,7 +7,7 @@ namespace Sozdanie_transportnoy_nakladnoy
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Login : Window
     {
         public static string tryLogin = "";
         public static string tryPassword = "";
@@ -16,12 +17,13 @@ namespace Sozdanie_transportnoy_nakladnoy
                                                                 password=*87654321;
                                                                 database=gruzoperevozki");
 
-        public MainWindow()
+        public Login()
         {
             InitializeComponent();
             try
             {
                 connect.Open();
+
             }
             catch
             {
@@ -29,17 +31,22 @@ namespace Sozdanie_transportnoy_nakladnoy
             }
         }
 
+
         private void registerWInOpen (object sender, RoutedEventArgs e)
         {
+            connect.Close();
             Registr regWindow = new Registr();
             regWindow.Show();
         }
 
         private void login_but_Click(object sender, RoutedEventArgs e)
         {
+            connect.Close();
+
             string loginNow = login_tb.Text;
             string passwordNow = password_tb.Text;
 
+            connect.Open();
             string selectLogin = "select email, password from users where email = '" +loginNow+"' and password =  '"+passwordNow+"';";
             MySqlCommand checkCommand = new MySqlCommand(selectLogin,connect);
             MySqlDataReader readLogin = checkCommand.ExecuteReader();
@@ -60,6 +67,7 @@ namespace Sozdanie_transportnoy_nakladnoy
             else
             {
                 MessageBox.Show("Такого пользователя не существует");
+                connect.Close();
                 return;
             }
         }

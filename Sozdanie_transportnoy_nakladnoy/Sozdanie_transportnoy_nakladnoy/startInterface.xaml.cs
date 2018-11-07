@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,30 @@ namespace Sozdanie_transportnoy_nakladnoy
     {
         public startInterface()
         {
-
+            InitializeComponent();
+            DataToDataGrid("users", DriverDG);
         }
+
+        public static void DataToDataGrid(string table, DataGrid dataGrid)
+        {
+            Login.connect.Close();
+
+            string select = String.Format("Select * from {0}",table);
+            Login.connect.Open();
+            MySqlCommand command1 = new MySqlCommand(select, Login.connect);
+            DataTable dt = new DataTable();
+            MySqlDataAdapter data = new MySqlDataAdapter(command1);
+            data.Fill(dt);
+            dataGrid.DataContext = dt;
+
+            Login.connect.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Environment.Exit(0);
+        }
+
     }
 }

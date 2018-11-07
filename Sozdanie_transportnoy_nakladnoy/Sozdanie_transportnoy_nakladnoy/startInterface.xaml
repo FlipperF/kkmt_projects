@@ -6,38 +6,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sozdanie_transportnoy_nakladnoy"
         mc:Ignorable="d"
-        Title="startInterface" Height="600" Width="950">
+        Title="startInterface" Height="600" Width="950" Closing="Window_Closing">
     <Grid>
-        <materialDesign:ColorZone
-  Mode="Inverted"
-  Padding="16" Background="#DDD83A3A" BorderBrush="Black">
-            <DockPanel>
-                <materialDesign:PopupBox
-      DockPanel.Dock="Right"
-      PlacementMode="BottomAndAlignRightEdges">
-                    <ListBox>
-                        <ListBoxItem>
-                            Hello World
-                        </ListBoxItem>
-                        <ListBoxItem>
-                            Nice Popup
-                        </ListBoxItem>
-                        <ListBoxItem>
-                            Goodbye.
-                        </ListBoxItem>
-                    </ListBox>
-                </materialDesign:PopupBox>
-                <StackPanel
-      Orientation="Horizontal">
-                    <ToggleButton
-        Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <TextBlock
-        VerticalAlignment="Center"
-        Margin="16 0 0 0">
-      Material Design In XAML Toolkit
-                    </TextBlock>
-                </StackPanel>
-            </DockPanel>
-        </materialDesign:ColorZone>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="530*"/>
+            <RowDefinition Height="39*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="133*"/>
+            <ColumnDefinition Width="809*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="#FFBDBDBD" Margin="0,31,0,38" Grid.RowSpan="2">
+            <Grid Height="495">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <Button Name="driversBut" Content="Водители" Margin="5,0" Background="#FF5271F9"></Button>
+                <Button Name="carsBut" Content="Автомобили" Margin="5,0" Grid.Row="1" Background="#FF5271F9"></Button>
+                <Button Name="trailerBut" Content="Прицепы" Margin="5,0" Grid.Row="2" Background="#FF5271F9"></Button>
+            </Grid>
+        </StackPanel>
+        <Frame Background="#FF5271F9" Grid.Row="2"></Frame>
+        <Grid Grid.Column="1" Margin="0,39,0,0" Grid.RowSpan="2">
+            <Grid Name="driverGrid">
+                <DataGrid Name="DriverDG" ItemsSource="{Binding }">
+
+                </DataGrid>
+            </Grid>
+        </Grid>
+        <StackPanel Margin="0,0,0,491" Background="#FF5271F9" Grid.ColumnSpan="2" VerticalAlignment="Top"> 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250*"/>
+                    <ColumnDefinition Width="250*"/>
+                    <ColumnDefinition Width="250*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Склад" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Trebuchet MS"/>
+            </Grid>
+        </StackPanel>
     </Grid>
+
+
 </Window>
