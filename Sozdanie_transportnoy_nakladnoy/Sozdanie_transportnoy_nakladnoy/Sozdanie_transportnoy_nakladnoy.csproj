@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MySqlClass.cs" />
     <Compile Include="Registr.xaml.cs">
       <DependentUpon>Registr.xaml</DependentUpon>
     </Compile>

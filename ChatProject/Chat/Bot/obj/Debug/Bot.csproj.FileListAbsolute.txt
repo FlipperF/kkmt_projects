@@ -1,0 +1,6 @@
+C:\Users\User\Desktop\Chat\Bot\bin\Debug\Bot.exe.config
+C:\Users\User\Desktop\Chat\Bot\bin\Debug\Bot.exe
+C:\Users\User\Desktop\Chat\Bot\bin\Debug\Bot.pdb
+C:\Users\User\Desktop\Chat\Bot\obj\Debug\Bot.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Chat\Bot\obj\Debug\Bot.exe
+C:\Users\User\Desktop\Chat\Bot\obj\Debug\Bot.pdb

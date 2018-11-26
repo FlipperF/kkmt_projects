@@ -28,20 +28,94 @@
                     <RowDefinition Height="50*"/>
                     <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
-                <Button Name="driversBut" Content="Водители" Margin="5,0" Background="#FF5271F9"></Button>
-                <Button Name="carsBut" Content="Автомобили" Margin="5,0" Grid.Row="1" Background="#FF5271F9"></Button>
-                <Button Name="trailerBut" Content="Прицепы" Margin="5,0" Grid.Row="2" Background="#FF5271F9"></Button>
+                <Button Name="driversBut" Content="Водители" Margin="5,0" Background="#FF5271F9" Click="driversBut_Click"></Button>
+                <Button Name="carsBut" Content="Автомобили" Margin="5,0" Grid.Row="1" Background="#FF5271F9" Click="carsBut_Click"></Button>
+                <Button Name="trailerBut" Content="Прицепы" Margin="5,0" Grid.Row="2" Background="#FF5271F9" Click="trailerBut_Click"></Button>
             </Grid>
         </StackPanel>
         <Frame Background="#FF5271F9" Grid.Row="2"></Frame>
+        <Button Name ="addFormBut" Content="Добавить" Grid.Row="2" Margin="5,0" Background="#FF5271F9" BorderBrush="White" Click="addFormBut_Click"></Button>
         <Grid Grid.Column="1" Margin="0,39,0,0" Grid.RowSpan="2">
-            <Grid Name="driverGrid">
-                <DataGrid Name="DriverDG" ItemsSource="{Binding }">
+
+            <Grid Name="driverGrid" Visibility="Visible">
+                <DataGrid Name="DriverDG" ItemsSource="{Binding }" Margin="0,-6,0,0"  CanUserAddRows="True" CanUserDeleteRows="True"  CanUserSortColumns="True" />
+            </Grid>
+
+            <Grid Name="carGrid" Visibility="Hidden">
+                <DataGrid Name="carDG" ItemsSource="{Binding }" Margin="0,-6,0,0" CanUserAddRows="True" CanUserDeleteRows="True"  CanUserSortColumns="True">
 
                 </DataGrid>
             </Grid>
+
+            <Grid Name="trailerGrid" Visibility="Hidden">
+                <DataGrid Name="trailerDG" ItemsSource="{Binding }" Margin="0,-6,0,0" CanUserAddRows="True" CanUserDeleteRows="True"  CanUserSortColumns="True">
+
+                </DataGrid>
+            </Grid>
+
+            <Grid Name="addDriverGrid" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="661*"/>
+                    <ColumnDefinition Width="148*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="55*"/>
+                    <RowDefinition Height="55*"/>
+                    <RowDefinition Height="55*"/>
+                    <RowDefinition Height="55*"/>
+                    <RowDefinition Height="55*"/>
+                    <RowDefinition Height="55*"/>
+                    <RowDefinition Height="80*"/>
+                </Grid.RowDefinitions>
+                <TextBox Name="addLname" Margin="225,10,74,10" materialDesign:HintAssist.Hint="Фамилию" FontSize="20" Grid.Row="1"></TextBox>
+                <TextBox Name="addName" Margin="225,10,74,10" materialDesign:HintAssist.Hint="Имя" FontSize="20" Grid.Row="2"></TextBox>
+                <TextBox Name="addMame" Margin="225,10,74,10" materialDesign:HintAssist.Hint="Отчество" FontSize="20" Grid.Row="3"></TextBox>
+                <TextBox Name="addPassData" Margin="225,10,74,10" materialDesign:HintAssist.Hint="Паспортные данные" FontSize="20" Grid.Row="4"></TextBox>
+                <ComboBox Name="addPrava" Margin="225,11,74,11" materialDesign:HintAssist.Hint="Категория прав" FontSize="20" Grid.Row="5" Height="38"></ComboBox>
+                <ComboBox Name="addCarDriver" Margin="225,10,74,10" materialDesign:HintAssist.Hint="Автомобиль" FontSize="20" Grid.Row="6" Height="39"></ComboBox>
+                <Button Name="addDriverBut" Content="Добавить" Grid.Row="7" Grid.Column="1" VerticalAlignment="Bottom" Margin="5,0,5,3" Background="#FF5271F9" BorderBrush="White"></Button>
+            </Grid>
+
+            <Grid Name="addCarGrid" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140*"/>
+                    <RowDefinition Height="90*"/>
+                    <RowDefinition Height="90*"/>
+                    <RowDefinition Height="90*"/>
+                    <RowDefinition Height="140*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="661*"/>
+                    <ColumnDefinition Width="148*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="addModelCar" Grid.Row="1" materialDesign:HintAssist.Hint="Марка машины" FontSize="30" Margin="200,5,109,5"></TextBox>
+                <TextBox Name="addGosNum" Grid.Row="2" Margin="200,5,109,5" materialDesign:HintAssist.Hint="Государственный номер" FontSize="30" ></TextBox>
+                <ComboBox Name="addRight" Grid.Row="3" Margin="200,5,109,5" materialDesign:HintAssist.Hint="Категория" FontSize="30" ></ComboBox>
+                <Button Name="addCarBut" Content="Добавить" Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" Margin="5,0,5,3" Background="#FF5271F9" BorderBrush="White"></Button>
+            </Grid>
+
+            <Grid Name="addTrailerGrid" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100*"/>
+                    <RowDefinition Height="60*"/>
+                    <RowDefinition Height="60*"/>
+                    <RowDefinition Height="60*"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="661*"/>
+                    <ColumnDefinition Width="148*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="addTrailerModel" materialDesign:HintAssist.Hint="Модель прицепа" FontSize="30" Grid.Row="1" Margin="180,5,49,5"> </TextBox>
+                <TextBox Name="addCarryngTrailer" materialDesign:HintAssist.Hint="Грузоподъемность прицепа(Т)" FontSize="30" Grid.Row="2" Margin="180,5,49,5"></TextBox>
+                <TextBox Name="addGosNumTrailer" materialDesign:HintAssist.Hint="Государственный номер" FontSize="30" Grid.Row="3" Margin="180,5,49,5"></TextBox>
+                <Button Name="addЕкфшдукBut" Content="Добавить" Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" Margin="5,0,5,3" Background="#FF5271F9" BorderBrush="White"></Button>
+
+            </Grid>
+
         </Grid>
-        <StackPanel Margin="0,0,0,491" Background="#FF5271F9" Grid.ColumnSpan="2" VerticalAlignment="Top"> 
+        <StackPanel Margin="0,0,0,491" Background="#FF5271F9" Grid.ColumnSpan="2" VerticalAlignment="Top">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250*"/>
