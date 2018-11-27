@@ -11,3 +11,10 @@ C:\Users\User\Desktop\serverChat\serverChat\obj\Debug\serverChat.csprojAssemblyR
 C:\Users\User\Desktop\serverChat\serverChat\obj\Debug\serverChat.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\serverChat\serverChat\obj\Debug\serverChat.exe
 C:\Users\User\Desktop\serverChat\serverChat\obj\Debug\serverChat.pdb
+C:\Users\User\source\repos\Projects\ChatProject\serverChat\serverChat\bin\Debug\serverChat.exe.config
+C:\Users\User\source\repos\Projects\ChatProject\serverChat\serverChat\bin\Debug\serverChat.exe
+C:\Users\User\source\repos\Projects\ChatProject\serverChat\serverChat\bin\Debug\serverChat.pdb
+C:\Users\User\source\repos\Projects\ChatProject\serverChat\serverChat\obj\Debug\serverChat.csprojAssemblyReference.cache
+C:\Users\User\source\repos\Projects\ChatProject\serverChat\serverChat\obj\Debug\serverChat.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Projects\ChatProject\serverChat\serverChat\obj\Debug\serverChat.exe
+C:\Users\User\source\repos\Projects\ChatProject\serverChat\serverChat\obj\Debug\serverChat.pdb

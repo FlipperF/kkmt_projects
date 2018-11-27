@@ -26,31 +26,41 @@ namespace Chat
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Функция клика по кнопке Зарегестрироваться
+        /// </summary>
+        /// <param name="sender">Объект</param>
+        /// <param name="e">Событие</param>
         private void regBut_Click(object sender, RoutedEventArgs e)
         {
+            //Проверка на незаполненные поля
             if(lnameTb.Text == "" || fnameTb.Text == "" || loginTb.Text == "" || passwordTb.Text == "")
             {
                 MessageBox.Show("Присутствуют незаполненные поля");
             }
             else
             {
-                string selectUser = "";
-                string userStatus = "";
+                string selectUser = ""; //Строка запроса на поиск полльзователя по логину
+                string userStatus = "";//Результат поиска
                 dataBase.connect.Open();
-                selectUser = "select login from users where login = '" + loginTb.Text.ToString()+"'";
-                MySqlCommand command = new MySqlCommand(selectUser, dataBase.connect);
-                MySqlDataReader reader = command.ExecuteReader();
+                selectUser = "select login from users where login = '" + loginTb.Text.ToString()+"'";//Запрос поиска юзера
+
+                MySqlCommand command = new MySqlCommand(selectUser, dataBase.connect);//Выполнение запроса
+                MySqlDataReader reader = command.ExecuteReader();//Ридер для чтения столбца результата
                 while (reader.Read())
                 {
                     userStatus = reader[0].ToString();
                    
                 }
+
+                //При удачном запросе уведомляет пользователя о наличии такого профиля
                 if (userStatus != "")
                 {
                     MessageBox.Show("Пользователь с таким Логином уже существует");
                     dataBase.connect.Close();
                     return;
                 }
+                //При неудачном запросе добавляет нового пользователя в базу и закрывает окно
                 else
                 {
                     dataBase.connect.Close();
@@ -59,14 +69,23 @@ namespace Chat
                                                                                                      lnameTb.Text + "', '" +
                                                                                                      loginTb.Text + "', '" +
                                                                                                      passwordTb.Text + "')";
-                    MessageBox.Show(addUser);
+
                     dataBase.command = new MySqlCommand(addUser, dataBase.connect);
-                    dataBase.command.ExecuteNonQuery();
+                    dataBase.command.ExecuteNonQuery();//Применить команду на добавление
                     dataBase.connect.Close();
+
+                    this.Hide();
+                    Login log = new Login();
+                    log.Show();
                 }
             }
         }
 
+        /// <summary>
+        /// На крестик сфорачивает окно, и отображает окно логина
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Login log = new Login();

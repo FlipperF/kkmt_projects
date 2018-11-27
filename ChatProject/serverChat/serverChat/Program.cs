@@ -11,7 +11,7 @@ namespace serverChat
     class Program
     {
         private const string ip= "127.0.0.1";
-        private const int port = 9933;
+        private const int port = 100;
         private static Thread serverThread;
 
         static void Main(string[] args)
@@ -52,7 +52,7 @@ namespace serverChat
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, port);
             Socket socket = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-            socket.Bind(new IPEndPoint(IPAddress.Any, port));
+            socket.Bind(new IPEndPoint(IPAddress.IPv6Any, port));
 
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
             EndPoint remote = (EndPoint)(sender);

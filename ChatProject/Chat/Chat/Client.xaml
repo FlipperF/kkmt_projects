@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="Client" Height="612" Width="809"
         WindowStartupLocation="CenterScreen" Closing="Window_Closing"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Background="White">
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="157"/>
+            <ColumnDefinition Width="159"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid>
@@ -22,19 +22,24 @@
             </Grid.RowDefinitions>
 
             <Grid>
-                <materialDesign:Chip HorizontalAlignment="Center" Name="profileBut"
-                    Content="" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <materialDesign:Chip HorizontalAlignment="Center" Name="profileBut" 
+                    Content=""  Grid.RowSpan="1" Height="Auto" Width="149" Margin="5,0" >
                     <materialDesign:Chip.Icon>
                         <Image Source="Resources/ProfilePic.jpg" />
                     </materialDesign:Chip.Icon>
                 </materialDesign:Chip>
+                <Label Name="logProfile" FontFamily="Comic Sans MS" FontSize="12" Content="" Margin="39,34,0,18" Grid.RowSpan="2" Foreground="#FF1B1A1A"/>
             </Grid>
             <Label Content ="Chats" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="20" HorizontalAlignment="Center"></Label>
             <ListBox Name="chatList" Grid.Row="2" SelectionChanged="chatList_SelectionChanged" ></ListBox>
         </Grid>
         <Grid Grid.Column="1" Name="startGrid" Visibility="Visible">
             <Frame Grid.Column="1" Background="DeepSkyBlue"/>
-            <Label Grid.Column="1" FontSize="30" Content ="Добро пожаловать в рекламу Yota, &#xA;выберите или создайте чат и &#xD;&#xA;приступайте к общению" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="68,194,10,213" Foreground="#DDFFFFFF" Height="162" Width="564"></Label>
+            <Label FontSize="30" Content ="Добро пожаловать в рекламу Yota, &#xA;откройте диалог и приступайте к общению" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="22,222,11,219" Foreground="#DDFFFFFF" Height="140" Width="611"/>
         </Grid>
         <Grid Name="chatGrid" Grid.Column="1" Visibility="Hidden">
             <Grid.ColumnDefinitions>
@@ -45,11 +50,13 @@
                 <RowDefinition Height="516*"/>
                 <RowDefinition Height="65"/>
             </Grid.RowDefinitions>
-            <TextBox Name="mesBoard" IsReadOnly="True" Background="#FFD3E7FB" Grid.ColumnSpan="2" TextWrapping="Wrap" FontFamily="Comic Sans MS" FontSize="20"></TextBox>
+            <ScrollViewer Name="scroll" Visibility="Visible" Grid.ColumnSpan="2">
+                <TextBox Name="mesBoard" IsReadOnly="True" Background="#FFD3E7FB" Grid.ColumnSpan="2" TextWrapping="Wrap" FontFamily="Comic Sans MS" FontSize="20"></TextBox>
+            </ScrollViewer>
             <TextBox  Name="writeMes" materialDesign:HintAssist.Hint="Введите сообщение..." Grid.Row="1" Margin="5,0,74,5" TextWrapping="Wrap" FontFamily="Comic Sans MS" FontSize="20" Background="{x:Null}" KeyDown="writeMes_KeyDown" Grid.ColumnSpan="2" ></TextBox>
-            <Button Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" HorizontalAlignment="Right" 
+            <Button Name="sendMesBtn" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" HorizontalAlignment="Right" 
   Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-  ToolTip="MaterialDesignFloatingActionMiniButton" Margin="0,14,17,12" Grid.Row="1" Grid.Column="1" Height="Auto">
+  ToolTip="MaterialDesignFloatingActionMiniButton" Margin="0,14,17,12" Grid.Row="1" Grid.Column="1" Height="Auto" Click="sendMesBtn_Click">
                 <materialDesign:PackIcon
                     Kind="Send"
                     Height="24"
