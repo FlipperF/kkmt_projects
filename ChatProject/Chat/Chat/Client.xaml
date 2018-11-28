@@ -27,9 +27,9 @@
                     <RowDefinition Height="6*"/>
                 </Grid.RowDefinitions>
                 <materialDesign:Chip HorizontalAlignment="Center" Name="profileBut" 
-                    Content=""  Grid.RowSpan="1" Height="Auto" Width="149" Margin="5,0" >
+                    Content=""  Grid.RowSpan="1" Height="Auto" Width="149" Margin="5,0" Click="profileBut_Click" >
                     <materialDesign:Chip.Icon>
-                        <Image Source="Resources/ProfilePic.jpg" />
+                        <Image Source="Resources/noImage.png" Height="23" Width="24" />
                     </materialDesign:Chip.Icon>
                 </materialDesign:Chip>
                 <Label Name="logProfile" FontFamily="Comic Sans MS" FontSize="12" Content="" Margin="39,34,0,18" Grid.RowSpan="2" Foreground="#FF1B1A1A"/>
@@ -63,6 +63,34 @@
                     Width="40" />
             </Button>
         </Grid>
+
+        <Border Name="setBord" Grid.Column="1" CornerRadius="360" BorderBrush="DeepSkyBlue" BorderThickness="5" Background="White" Margin="78,44,79,56" Visibility="Visible">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="124*"/>
+                    <RowDefinition Height="37*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="51*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="92*"/>
+                    <RowDefinition Height="34*"/>
+                </Grid.RowDefinitions>
+                <Button Name="imgProfileBtn" Margin="186,18,186,4" Height="Auto" BorderThickness="30" Click="imgProfileBtn_Click" >
+                    <StackPanel Name="sp">
+                        <Image Name="img" Source="Resources/noImage.png" Height="70" Width="65"></Image>
+                    </StackPanel>
+                </Button>
+                <Label Name= "logProf" Grid.Row="1" Content="@JhonDoe" HorizontalContentAlignment="Center" FontFamily="Comic Sans MS" FontSize="15" Foreground="#DD000000"></Label>
+                <TextBlock Name="nameBlock" Grid.Row="2" Text="Jhon" FontSize="25" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Margin="0,8,0,7" Height="35"></TextBlock>
+                <TextBlock Name="lnameBlock" Grid.Row="3" Text="Doe" FontSize="25" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Margin="0,8" Height="35"></TextBlock>
+                <TextBox Name="nameBox" HorizontalAlignment="Center" Grid.Row="2" Text="20" FontSize="25" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" Margin="0,3" Height="44"></TextBox>
+                <TextBox Name="lnameBox" HorizontalAlignment="Center" Grid.Row="3" Text="20" FontSize="25" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" Margin="0,4,0,3" Height="44"></TextBox>
+                <Button Name="redBut" Grid.Row="5" Margin="165,0" BorderThickness="15" Click="redBut_Click">Редактировать</Button>
+                <Button Name="accept" Grid.Row="6" Margin="180,0" BorderThickness="15" Click="accept_Click">Применить</Button>
+            </Grid>
+
+        </Border>
 
 
     </Grid>

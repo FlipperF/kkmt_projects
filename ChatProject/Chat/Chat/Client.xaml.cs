@@ -6,6 +6,9 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+
 namespace Chat
 {
     /// <summary>
@@ -17,6 +20,7 @@ namespace Chat
         private Thread clientThread; // поток получения сообщений
         public static string myHost; //Имя узла
         //public static string ip = "rooddie.ddns.net";
+        //public static string ip = "mikazuki.ddns.net";
         public static string ip = "127.0.0.1";//Сервер
         public static int port = 100; //Порт сервера
         public static string userName; //Имя,отображаемое в сообщении
@@ -41,9 +45,14 @@ namespace Chat
             else
                 profileBut.Content = Login.fname + " " + Login.lname;
 
-            userName = Login.fname; //имя для сообщения
+            userName =Login.fname; //имя для сообщения
 
             logProfile.Content = "@"+Login.loginStat;//Логин
+            nameBlock.Text = Login.fname;
+            lnameBlock.Text = Login.lname;
+            logProf.Content = "@" + Login.loginStat;
+            nameBox.Text = Login.fname;
+            lnameBox.Text = Login.lname;
 
             connect();// Подключение к серверу
             clientThread = new Thread(listner);//Поток прослушки
@@ -229,6 +238,66 @@ namespace Chat
         private void sendMesBtn_Click(object sender, RoutedEventArgs e)
         {
             sendMessage();
+        }
+
+        private void profileBut_Click(object sender, RoutedEventArgs e)
+        {
+            setBord.Visibility = Visibility.Visible;
+
+        }
+
+        private void accept_Click(object sender, RoutedEventArgs e)
+        {
+            if(lnameBox.Text == "" || nameBox.Text == "")
+            {
+                MessageBox.Show("Присутствуют незаполненные поля. Старые данные остаются без изменений");
+                nameBox.Text = nameBlock.Text;
+                lnameBox.Text = lnameBlock.Text;
+            }
+            else
+            {
+                nameBlock.Text = nameBox.Text;
+                lnameBlock.Text = lnameBox.Text;
+                string newDataUser = @"UPDATE `P2_15_Pervoi`.`users` SET `fname` = '"+nameBox.Text.ToString()+"', `lname` = '" + lnameBox.Text.ToString()+ "'" +
+                    "  WHERE (`login` = '" + Login.loginStat+"');";
+                //MessageBox.Show(newDataUser);
+
+                dataBase.connect.Open();
+                dataBase.command = new MySql.Data.MySqlClient.MySqlCommand(newDataUser, dataBase.connect);
+                dataBase.command.ExecuteNonQuery();
+                dataBase.connect.Close();
+
+                if ((nameBlock.Text + " " + lnameBlock.Text).Length >= 16)
+                {
+                    profileBut.Content = nameBlock.Text + "\n" + lnameBlock.Text;
+                }
+                else
+                    profileBut.Content = nameBlock.Text + " " + lnameBlock.Text;
+            }
+            
+            setBord.Visibility = Visibility.Hidden;
+            nameBlock.Visibility = Visibility.Visible;
+            lnameBlock.Visibility = Visibility.Visible;
+            nameBox.Visibility = Visibility.Hidden;
+            lnameBox.Visibility = Visibility.Hidden;
+
+            
+        }
+
+        private void redBut_Click(object sender, RoutedEventArgs e)
+        {
+            nameBlock.Visibility = Visibility.Hidden;
+            lnameBlock.Visibility = Visibility.Hidden;
+            nameBox.Visibility = Visibility.Visible;
+            lnameBox.Visibility = Visibility.Visible;
+        }
+
+        private void imgProfileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Image img = new Image();
+            img.Source = new BitmapImage(new Uri("Resources/1.jpg", UriKind.Relative));
+            profileBut.Icon = img;
+
         }
     }
 }

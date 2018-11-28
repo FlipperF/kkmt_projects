@@ -73,7 +73,7 @@ namespace Chat
                 //При нахождении пользователя Откроет основную программу
                 if (loginStat != "" && passStat != "")
                 {
-
+                    dataBase.connect.Close();
                     this.Hide();
                     Client client = new Client();
                     client.Show();

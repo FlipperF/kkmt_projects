@@ -13,8 +13,9 @@ namespace Chat
                                                                 port=3306;
                                                                 user=student;
                                                                 password=Student!@#;
-                                                                database=P2_15_Pervoi");
+                                                                database=P2_15_Pervoi; charset=utf8");
         public static MySqlDataReader reader;
         public static MySqlCommand command;
+  
     }
 }
