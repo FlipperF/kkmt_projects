@@ -50,10 +50,10 @@
                 <RowDefinition Height="516*"/>
                 <RowDefinition Height="65"/>
             </Grid.RowDefinitions>
-            <ScrollViewer Name="scroll" Visibility="Visible" Grid.ColumnSpan="2">
-                <TextBox Name="mesBoard" IsReadOnly="True" Background="#FFD3E7FB" Grid.ColumnSpan="2" TextWrapping="Wrap" FontFamily="Comic Sans MS" FontSize="20"></TextBox>
+            <ScrollViewer Name="scroll" Visibility="Visible" Grid.ColumnSpan="2" Background="#FFD3E7FB" Height="auto" >
+                <StackPanel VerticalAlignment="Bottom" Name="mesBoard" Grid.ColumnSpan="2"></StackPanel>
             </ScrollViewer>
-            <TextBox  Name="writeMes" materialDesign:HintAssist.Hint="Введите сообщение..." Grid.Row="1" Margin="5,0,74,5" TextWrapping="Wrap" FontFamily="Comic Sans MS" FontSize="20" Background="{x:Null}" KeyDown="writeMes_KeyDown" Grid.ColumnSpan="2" ></TextBox>
+            <TextBox  Name="writeMes" MaxLength="5000" materialDesign:HintAssist.Hint="Введите сообщение..." Grid.Row="1" Margin="5,0,74,5" TextWrapping="Wrap" FontFamily="Comic Sans MS" FontSize="20" Background="{x:Null}" KeyDown="writeMes_KeyDown" Grid.ColumnSpan="2" Height="auto"></TextBox>
             <Button Name="sendMesBtn" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" HorizontalAlignment="Right" 
   Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
   ToolTip="MaterialDesignFloatingActionMiniButton" Margin="0,14,17,12" Grid.Row="1" Grid.Column="1" Height="Auto" Click="sendMesBtn_Click">
@@ -64,7 +64,7 @@
             </Button>
         </Grid>
 
-        <Border Name="setBord" Grid.Column="1" CornerRadius="360" BorderBrush="DeepSkyBlue" BorderThickness="5" Background="White" Margin="78,44,79,56" Visibility="Visible">
+        <Border Name="setBord" Grid.Column="1" CornerRadius="360" BorderBrush="DeepSkyBlue" BorderThickness="5" Background="White" Margin="78,44,79,56" Visibility="Hidden">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="124*"/>
