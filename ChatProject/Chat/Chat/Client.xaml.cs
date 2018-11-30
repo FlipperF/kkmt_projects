@@ -319,8 +319,16 @@ namespace Chat
         {
             ImageBrush myBrush = new ImageBrush();//Переменная изображения
             myBrush.ImageSource = new BitmapImage(new Uri("Resources/1.jpg", UriKind.Relative));
+
+            Image img = new Image();
+            img.Source = new BitmapImage(new Uri("Resources/1.jpg", UriKind.Relative));
+            img.UseLayoutRounding = true;
+            img.SnapsToDevicePixels = true;
+            img.Stretch = Stretch.Fill;
+            img.Width = 32;
+            img.Height = 32;
             imgProfileBtn.Background = myBrush;
-            //profileBut.Icon = img;
+            profileBut.Icon = img;
 
         }
 
@@ -360,23 +368,38 @@ namespace Chat
             //MessageBox.Show(name);
             if (name == nameBox.Text+":")
             {
-                UserNameTB.HorizontalAlignment = HorizontalAlignment.Left;
-                messageTB.HorizontalAlignment = HorizontalAlignment.Left;
-                messageSP.HorizontalAlignment = HorizontalAlignment.Left;
-                messageSP.Margin = new Thickness(5, 0, 300, 0);
+                UserNameTB.HorizontalAlignment = HorizontalAlignment.Right;
+                messageTB.HorizontalAlignment = HorizontalAlignment.Right;
+                messageSP.HorizontalAlignment = HorizontalAlignment.Right;
+                messageSP.Margin = new Thickness(250, 0, 5, 0);
                 UserNameTB.Margin = new Thickness(5, 0, 5, 0);
             }
             else
             {
-                UserNameTB.HorizontalAlignment = HorizontalAlignment.Right;
-                messageTB.HorizontalAlignment = HorizontalAlignment.Right;
-                messageSP.HorizontalAlignment = HorizontalAlignment.Right;
-                messageSP.Margin = new Thickness(300, 0, 5, 0);
+                UserNameTB.HorizontalAlignment = HorizontalAlignment.Left;
+                messageTB.HorizontalAlignment = HorizontalAlignment.Left;
+                messageSP.HorizontalAlignment = HorizontalAlignment.Left;
+                messageSP.Margin = new Thickness(5, 0, 250, 0);
                 UserNameTB.Margin = new Thickness(5, 0, 5, 0);
             }
+            MaterialDesignThemes.Wpf.Chip btn = new MaterialDesignThemes.Wpf.Chip();
+
+            Image img = new Image();
+            img.Source = new BitmapImage(new Uri("Resources/1.jpg", UriKind.Relative));
+            img.UseLayoutRounding = true;
+            img.SnapsToDevicePixels = true;
+            img.Stretch = Stretch.Fill;
+            img.Width = 32;
+            img.Height = 32;
+            btn.Icon = img;
+            btn.HorizontalAlignment = HorizontalAlignment.Right;
+            btn.Height = double.NaN;
+            btn.Margin = new Thickness(5,5,0,5);
+            btn.Content = messageTB;
+            
             //Добавление блока сообщения и имени пользователя в стак панель, а ее в основную доску сообщений
-            messageSP.Children.Add(UserNameTB);
-            messageSP.Children.Add(messageTB);
+            messageSP.Children.Add(btn);
+            //messageSP.Children.Add(messageTB);
             mesBoard.Children.Add(messageSP);
         }
     }

@@ -27,10 +27,7 @@
                     <RowDefinition Height="6*"/>
                 </Grid.RowDefinitions>
                 <materialDesign:Chip HorizontalAlignment="Center" Name="profileBut" 
-                    Content=""  Grid.RowSpan="1" Height="Auto" Width="149" Margin="5,0" Click="profileBut_Click" >
-                    <materialDesign:Chip.Icon>
-                        <Image Source="Resources/noImage.png" Height="23" Width="24" />
-                    </materialDesign:Chip.Icon>
+                     Grid.RowSpan="1" Height="Auto" Width="149" Margin="5,0" Click="profileBut_Click" >
                 </materialDesign:Chip>
                 <Label Name="logProfile" FontFamily="Comic Sans MS" FontSize="12" Content="" Margin="39,34,0,18" Grid.RowSpan="2" Foreground="#FF1B1A1A"/>
             </Grid>

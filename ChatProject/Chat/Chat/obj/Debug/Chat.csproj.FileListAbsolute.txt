@@ -54,3 +54,5 @@ C:\Users\User\source\repos\Projects\ChatProject\Chat\Chat\obj\Debug\Chat.csproj.
 C:\Users\User\source\repos\Projects\ChatProject\Chat\Chat\obj\Debug\Chat.csproj.CopyComplete
 C:\Users\User\source\repos\Projects\ChatProject\Chat\Chat\obj\Debug\Chat.exe
 C:\Users\User\source\repos\Projects\ChatProject\Chat\Chat\obj\Debug\Chat.pdb
+C:\Users\User\source\repos\Projects\ChatProject\Chat\Chat\bin\Debug\MaterialDesignColors.dll
+C:\Users\User\source\repos\Projects\ChatProject\Chat\Chat\bin\Debug\MaterialDesignThemes.Wpf.dll
