@@ -1,14 +1,308 @@
-﻿<Window x:Class="Chat.Client"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chat"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf" x:Class="Chat.Client"
         mc:Ignorable="d"
-        Title="Client" Height="612" Width="809"
+        Title="Client" Height="629.5" Width="809"
         WindowStartupLocation="CenterScreen" Closing="Window_Closing"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Background="White">
+        Background="White">
+    <Window.Resources>
+        <Style x:Key="buttonProfileEdit" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle">
+                <Setter.Value>
+                    <Style>
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Rectangle Margin="2" SnapsToDevicePixels="True" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+            <Setter Property="materialDesign:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+            <Setter Property="materialDesign:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            <Setter Property="materialDesign:RippleAssist.Feedback" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth1"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="stretch"/>
+            <Setter Property="Padding" Value="16,4"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="materialDesign:ButtonProgressAssist.IsIndicatorVisible" Value="False"/>
+            <Setter Property="materialDesign:ButtonProgressAssist.Opacity" Value="0.4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <AdornerDecorator CacheMode="{Binding (materialDesign:ShadowAssist.CacheMode), RelativeSource={RelativeSource Self}}">
+                                <Grid>
+                                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="90">
+                                        <Border.Effect>
+                                            <Binding Path="(materialDesign:ShadowAssist.ShadowDepth)" RelativeSource="{RelativeSource TemplatedParent}">
+                                                <Binding.Converter>
+                                                    <Converters:ShadowConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </Border.Effect>
+                                    </Border>
+                                    <ProgressBar x:Name="ProgressBar" Background="{Binding (materialDesign:ButtonProgressAssist.IndicatorBackground), RelativeSource={RelativeSource TemplatedParent}}" Foreground="{Binding (materialDesign:ButtonProgressAssist.IndicatorForeground), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Left" Height="{TemplateBinding Height}" IsIndeterminate="{Binding (materialDesign:ButtonProgressAssist.IsIndeterminate), RelativeSource={RelativeSource TemplatedParent}}" Maximum="{Binding (materialDesign:ButtonProgressAssist.Maximum), RelativeSource={RelativeSource TemplatedParent}}" Minimum="{Binding (materialDesign:ButtonProgressAssist.Minimum), RelativeSource={RelativeSource TemplatedParent}}" Opacity="{Binding (materialDesign:ButtonProgressAssist.Opacity), RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource MaterialDesignLinearProgressBar}" Value="{Binding (materialDesign:ButtonProgressAssist.Value), RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ButtonBase}}}">
+                                        <ProgressBar.Visibility>
+                                            <Binding Path="(materialDesign:ButtonProgressAssist.IsIndicatorVisible)" RelativeSource="{RelativeSource TemplatedParent}">
+                                                <Binding.Converter>
+                                                    <BooleanToVisibilityConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </ProgressBar.Visibility>
+                                    </ProgressBar>
+                                </Grid>
+                            </AdornerDecorator>
+                            <materialDesign:Ripple ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="materialDesign:ShadowAssist.Darken" TargetName="border" Value="True"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="materialDesign:ShadowAssist.Darken" TargetName="border" Value="True"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.23"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type materialDesign:Chip}">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Background" Value="{DynamicResource MaterialDesignChipBackground}"/>
+            <Setter Property="IconBackground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            <Setter Property="IconForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type materialDesign:Chip}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{TemplateBinding Background}" Grid.ColumnSpan="3" CornerRadius="16"/>
+                            <ContentControl x:Name="IconControl" Background="{TemplateBinding IconBackground}" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding IconForeground}" FontWeight="Normal" FontSize="17" HorizontalContentAlignment="Center" Height="32" IsTabStop="False" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="32">
+                                <ContentControl.Clip>
+                                    <EllipseGeometry Center="16,16" RadiusY="16" RadiusX="16"/>
+                                </ContentControl.Clip>
+                                <ContentControl.Template>
+                                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </ContentControl.Template>
+                                <ContentControl.Visibility>
+                                    <TemplateBinding Property="Icon">
+                                        <TemplateBinding.Converter>
+                                            <Converters:NullableToVisibilityConverter NullValue="Collapsed" NotNullValue="Visible"/>
+                                        </TemplateBinding.Converter>
+                                    </TemplateBinding>
+                                </ContentControl.Visibility>
+                            </ContentControl>
+                            <ContentControl x:Name="TextBlock" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" ContentStringFormat="{TemplateBinding ContentTemplateSelector}" IsTabStop="False" Margin="8,0,12,0" VerticalAlignment="Center"/>
+                            <Button x:Name="PART_DeleteButton" Grid.Column="2" Height="16" Margin="-6,0,8,0" ToolTip="{TemplateBinding DeleteToolTip}" VerticalAlignment="Center" Width="16">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Ellipse x:Name="Bg" Fill="#FFA6A6A6" Stroke="#FF009587" StrokeThickness="0"/>
+                                            <materialDesign:PackIcon HorizontalAlignment="Center" Height="12" Kind="Close" VerticalAlignment="Center" Width="12"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="StrokeThickness" TargetName="Bg" Value="1"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Button.Visibility>
+                                    <TemplateBinding Property="IsDeletable">
+                                        <TemplateBinding.Converter>
+                                            <BooleanToVisibilityConverter/>
+                                        </TemplateBinding.Converter>
+                                    </TemplateBinding>
+                                </Button.Visibility>
+                            </Button>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Visibility" SourceName="IconControl" Value="Collapsed">
+                                <Setter Property="Margin" TargetName="TextBlock" Value="12,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ChipStyle1" TargetType="{x:Type materialDesign:Chip}">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Background" Value="{DynamicResource MaterialDesignChipBackground}"/>
+            <Setter Property="IconBackground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            <Setter Property="IconForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type materialDesign:Chip}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Background="{TemplateBinding Background}" Grid.ColumnSpan="3" CornerRadius="16"/>
+                            <ContentControl x:Name="IconControl" Background="{TemplateBinding IconBackground}" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding IconForeground}" FontWeight="Normal" FontSize="17" HorizontalContentAlignment="Center" Height="32" IsTabStop="False" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="32">
+                                <ContentControl.Clip>
+                                    <EllipseGeometry Center="16,16" RadiusY="16" RadiusX="16"/>
+                                </ContentControl.Clip>
+                                <ContentControl.Template>
+                                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </ContentControl.Template>
+                                <ContentControl.Visibility>
+                                    <TemplateBinding Property="Icon">
+                                        <TemplateBinding.Converter>
+                                            <Converters:NullableToVisibilityConverter NullValue="Collapsed" NotNullValue="Visible"/>
+                                        </TemplateBinding.Converter>
+                                    </TemplateBinding>
+                                </ContentControl.Visibility>
+                            </ContentControl>
+                            <ContentControl x:Name="TextBlock" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" ContentStringFormat="{TemplateBinding ContentTemplateSelector}" IsTabStop="False" Margin="8,0,12,0" VerticalAlignment="Center"/>
+                            <Button x:Name="PART_DeleteButton" Grid.Column="2" Height="16" Margin="-6,0,8,0" ToolTip="{TemplateBinding DeleteToolTip}" VerticalAlignment="Center" Width="16">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Ellipse x:Name="Bg" Fill="#FFA6A6A6" Stroke="#FF009587" StrokeThickness="0"/>
+                                            <materialDesign:PackIcon HorizontalAlignment="Center" Height="12" Kind="Close" VerticalAlignment="Center" Width="12"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="StrokeThickness" TargetName="Bg" Value="1"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Button.Visibility>
+                                    <TemplateBinding Property="IsDeletable">
+                                        <TemplateBinding.Converter>
+                                            <BooleanToVisibilityConverter/>
+                                        </TemplateBinding.Converter>
+                                    </TemplateBinding>
+                                </Button.Visibility>
+                            </Button>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Visibility" SourceName="IconControl" Value="Collapsed">
+                                <Setter Property="Margin" TargetName="TextBlock" Value="12,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle">
+                <Setter.Value>
+                    <Style>
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Rectangle Margin="2" SnapsToDevicePixels="True" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+            <Setter Property="materialDesign:ButtonProgressAssist.IndicatorForeground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+            <Setter Property="materialDesign:ButtonProgressAssist.IndicatorBackground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+            <Setter Property="materialDesign:RippleAssist.Feedback" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth1"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="16,4"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="materialDesign:ButtonProgressAssist.IsIndicatorVisible" Value="False"/>
+            <Setter Property="materialDesign:ButtonProgressAssist.Opacity" Value="0.4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <AdornerDecorator CacheMode="{Binding (materialDesign:ShadowAssist.CacheMode), RelativeSource={RelativeSource Self}}">
+                                <Grid>
+                                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2">
+                                        <Border.Effect>
+                                            <Binding Path="(materialDesign:ShadowAssist.ShadowDepth)" RelativeSource="{RelativeSource TemplatedParent}">
+                                                <Binding.Converter>
+                                                    <Converters:ShadowConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </Border.Effect>
+                                    </Border>
+                                    <ProgressBar x:Name="ProgressBar" Background="{Binding (materialDesign:ButtonProgressAssist.IndicatorBackground), RelativeSource={RelativeSource TemplatedParent}}" Foreground="{Binding (materialDesign:ButtonProgressAssist.IndicatorForeground), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Left" Height="{TemplateBinding Height}" IsIndeterminate="{Binding (materialDesign:ButtonProgressAssist.IsIndeterminate), RelativeSource={RelativeSource TemplatedParent}}" Maximum="{Binding (materialDesign:ButtonProgressAssist.Maximum), RelativeSource={RelativeSource TemplatedParent}}" Minimum="{Binding (materialDesign:ButtonProgressAssist.Minimum), RelativeSource={RelativeSource TemplatedParent}}" Opacity="{Binding (materialDesign:ButtonProgressAssist.Opacity), RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource MaterialDesignLinearProgressBar}" Value="{Binding (materialDesign:ButtonProgressAssist.Value), RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ButtonBase}}}">
+                                        <ProgressBar.Visibility>
+                                            <Binding Path="(materialDesign:ButtonProgressAssist.IsIndicatorVisible)" RelativeSource="{RelativeSource TemplatedParent}">
+                                                <Binding.Converter>
+                                                    <BooleanToVisibilityConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </ProgressBar.Visibility>
+                                    </ProgressBar>
+                                </Grid>
+                            </AdornerDecorator>
+                            <materialDesign:Ripple ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="materialDesign:ShadowAssist.Darken" TargetName="border" Value="True"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="materialDesign:ShadowAssist.Darken" TargetName="border" Value="True"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.23"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="159"/>
@@ -16,29 +310,49 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="77*"/>
-                <RowDefinition Height="38*"/>
-                <RowDefinition Height="454*"/>
+                <RowDefinition Height="78"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="36"/>
+                <RowDefinition Height="701"/>
+
             </Grid.RowDefinitions>
 
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="7*"/>
-                    <RowDefinition Height="6*"/>
-                </Grid.RowDefinitions>
-                <materialDesign:Chip HorizontalAlignment="Center" Name="profileBut" 
-                     Grid.RowSpan="1" Height="Auto" Width="149" Margin="5,0" Click="profileBut_Click" >
-                </materialDesign:Chip>
-                <Label Name="logProfile" FontFamily="Comic Sans MS" FontSize="12" Content="" Margin="39,34,0,18" Grid.RowSpan="2" Foreground="#FF1B1A1A"/>
+
+                <materialDesign:Chip HorizontalAlignment="Center" x:Name="profileBut" 
+                   Height="Auto" Width="149" Margin="5,0" Click="profileBut_Click" Style="{DynamicResource ChipStyle1}" />
             </Grid>
-            <Label Content ="Chats" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="20" HorizontalAlignment="Center"></Label>
-            <ListBox Name="chatList" Grid.Row="2" SelectionChanged="chatList_SelectionChanged" ></ListBox>
+            <Label Content ="Chats" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="20" HorizontalAlignment="Center" Margin="48,0" Width="63"/>
+            <ListBox FontSize="18" FontFamily="Comic Sans MS" x:Name="chatList" Grid.Row="2" SelectionChanged="chatList_SelectionChanged" Margin="0,0,0,0" />
+
+            <Grid Name="advertstring" Grid.Row="3" Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="93*"/>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="89*"/>
+                </Grid.RowDefinitions>
+
+                <Button Name="gaminatorBtn" Style="{DynamicResource ButtonStyle2}" Height="Auto" Grid.Row="0" Click="gaminatorBtn_Click">
+                    <MediaElement VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="Resources/87-1.gif" Name="media"  Margin="-21,-6,-20,-8" MediaEnded="media_MediaEnded"/>
+                </Button>
+                <Button Name="vaBankBtn" Style="{DynamicResource ButtonStyle2}" Height="Auto" Grid.Row="1" Click="vaBankBtn_Click">
+                    <MediaElement VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="Resources/168.gif" Name="media1" Margin="-18,-8,-17,-8" MediaEnded="media_MediaEnded"/>
+                </Button>
+                <Button Name="binomoBut" Style="{DynamicResource ButtonStyle2}" Height="Auto" Grid.Row="2" Click="binomoBut_Click">
+                    <MediaElement VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="Resources/96-1.gif" Name="media2" MediaEnded="media_MediaEnded" Margin="-29,-7,-29,-8"/>
+                </Button>
+
+
+
+            </Grid>
+
+
         </Grid>
-        <Grid Grid.Column="1" Name="startGrid" Visibility="Visible">
+        <Grid Grid.Column="1" x:Name="startGrid" Visibility="Visible">
             <Frame Grid.Column="1" Background="DeepSkyBlue"/>
             <Label FontSize="30" Content ="Добро пожаловать в рекламу Yota, &#xA;откройте диалог и приступайте к общению" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="22,222,11,219" Foreground="#DDFFFFFF" Height="140" Width="611"/>
         </Grid>
-        <Grid Name="chatGrid" Grid.Column="1" Visibility="Hidden">
+        <Grid x:Name="chatGrid" Grid.Column="1" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="189*"/>
                 <ColumnDefinition Width="25*"/>
@@ -47,11 +361,11 @@
                 <RowDefinition Height="516*"/>
                 <RowDefinition Height="65"/>
             </Grid.RowDefinitions>
-            <ScrollViewer Name="scroll" Visibility="Visible" Grid.ColumnSpan="2" Background="#FFD3E7FB" Height="auto" >
-                <StackPanel VerticalAlignment="Bottom" Name="mesBoard" Grid.ColumnSpan="2"></StackPanel>
+            <ScrollViewer x:Name="scroll" Visibility="Visible" Grid.ColumnSpan="2" Background="#FFD3E7FB" Height="auto" >
+                <StackPanel VerticalAlignment="Bottom" x:Name="mesBoard" Grid.ColumnSpan="2"/>
             </ScrollViewer>
-            <TextBox  Name="writeMes" MaxLength="5000" materialDesign:HintAssist.Hint="Введите сообщение..." Grid.Row="1" Margin="5,0,74,5" TextWrapping="Wrap" FontFamily="Comic Sans MS" FontSize="20" Background="{x:Null}" KeyDown="writeMes_KeyDown" Grid.ColumnSpan="2" Height="auto"></TextBox>
-            <Button Name="sendMesBtn" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" HorizontalAlignment="Right" 
+            <TextBox  x:Name="writeMes" MaxLength="5000" materialDesign:HintAssist.Hint="Введите сообщение..." Grid.Row="1" Margin="5,0,74,5" TextWrapping="Wrap" FontFamily="Comic Sans MS" FontSize="20" Background="{x:Null}" KeyDown="writeMes_KeyDown" Grid.ColumnSpan="2" Height="auto"/>
+            <Button x:Name="sendMesBtn" Background="DeepSkyBlue" BorderBrush="DeepSkyBlue" HorizontalAlignment="Right" 
   Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
   ToolTip="MaterialDesignFloatingActionMiniButton" Margin="0,14,17,12" Grid.Row="1" Grid.Column="1" Height="Auto" Click="sendMesBtn_Click">
                 <materialDesign:PackIcon
@@ -60,31 +374,47 @@
                     Width="40" />
             </Button>
         </Grid>
-
-        <Border Name="setBord" Grid.Column="1" CornerRadius="360" BorderBrush="DeepSkyBlue" BorderThickness="5" Background="White" Margin="78,44,79,56" Visibility="Hidden">
+        <Border x:Name="setBord"  Grid.Column="1" CornerRadius="360" BorderBrush="DeepSkyBlue" BorderThickness="5" Background="White" Margin="40,20" Height="auto" Width="auto" Visibility="Hidden" MaxHeight="770" MaxWidth="770" >
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="124*"/>
-                    <RowDefinition Height="37*"/>
-                    <RowDefinition Height="50*"/>
-                    <RowDefinition Height="51*"/>
+                    <RowDefinition Height="144*"/>
                     <RowDefinition Height="43*"/>
-                    <RowDefinition Height="40*"/>
-                    <RowDefinition Height="92*"/>
-                    <RowDefinition Height="34*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="64*"/>
+                    <RowDefinition Height="23*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="49*"/>
+                    <RowDefinition Height="49*"/>
                 </Grid.RowDefinitions>
-                <Button Name="imgProfileBtn" Margin="186,18,186,4" Height="Auto" BorderThickness="30" Click="imgProfileBtn_Click" >
-                    <StackPanel Name="sp">
-                        <Image Name="img" Source="Resources/noImage.png" Height="70" Width="65"></Image>
-                    </StackPanel>
+                <Button x:Name="imgProfileBtn"  Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="imgProfileBtn_Click" Style="{DynamicResource buttonProfileEdit}" Margin="225,24,225,25" MaxHeight="160" MaxWidth="160">
+                    <Ellipse x:Name="imgProfile" Margin="-16,-4">
+                        <Ellipse.Fill>
+                            <ImageBrush  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
                 </Button>
-                <Label Name= "logProf" Grid.Row="1" Content="@JhonDoe" HorizontalContentAlignment="Center" FontFamily="Comic Sans MS" FontSize="15" Foreground="#DD000000"></Label>
-                <TextBlock Name="nameBlock" Grid.Row="2" Text="Jhon" FontSize="25" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Margin="0,8,0,7" Height="35"></TextBlock>
-                <TextBlock Name="lnameBlock" Grid.Row="3" Text="Doe" FontSize="25" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Margin="0,8" Height="35"></TextBlock>
-                <TextBox Name="nameBox" HorizontalAlignment="Center" Grid.Row="2" Text="20" FontSize="25" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" Margin="0,3" Height="44"></TextBox>
-                <TextBox Name="lnameBox" HorizontalAlignment="Center" Grid.Row="3" Text="20" FontSize="25" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" Margin="0,4,0,3" Height="44"></TextBox>
-                <Button Name="redBut" Grid.Row="5" Margin="165,0" BorderThickness="15" Click="redBut_Click">Редактировать</Button>
-                <Button Name="accept" Grid.Row="6" Margin="180,0" BorderThickness="15" Click="accept_Click">Применить</Button>
+                <Label x:Name= "logProf" Grid.Row="1" Content="@JhonDoe" HorizontalContentAlignment="Center" FontFamily="Comic Sans MS" FontSize="15" Foreground="#DD000000"/>
+                <TextBlock x:Name="nameBlock" Grid.Row="2" Text="Jhon" FontSize="32" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Margin="0,15" Height="50" Visibility="Visible"/>
+                <TextBlock x:Name="lnameBlock" Grid.Row="3" Text="Doe" FontSize="32" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Margin="0,7" Height="50" Visibility="Visible"/>
+                <TextBox x:Name="nameBox" Grid.Row="2" Text="Jhon" FontSize="32" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Margin="150,15" Height="50" Visibility="Hidden"/>
+                <TextBox x:Name="lnameBox" Grid.Row="3" Text="Doe" FontSize="32" FontFamily="Comic Sans MS" TextAlignment="Center" VerticalAlignment="Center" Margin="150,7" Height="50" Visibility="Hidden"/>
+                <Button x:Name="redBut" Grid.Row="5" Margin="165,0,165,10" BorderThickness="15" Click="redBut_Click" Content="Редактировать" Height="Auto"/>
+                <Button x:Name="accept" Grid.Row="6" Margin="165,0,165,13" BorderThickness="15" Click="accept_Click" Content="Применить" Height="Auto"/>
+                <Grid Grid.Row="7" HorizontalAlignment="Center" Margin="216,0" Width="120">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <ToggleButton  Name="advertstringCheck" IsChecked="True" Grid.Column="1"
+                  Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                   RenderTransformOrigin="0.5,0.5" Click="advertstringCheck_Click"/>
+                    <Label FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">Реклама</Label>
+                </Grid>
+
             </Grid>
 
         </Border>

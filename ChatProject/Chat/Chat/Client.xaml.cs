@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -25,6 +28,13 @@ namespace Chat
         public static int port = 100; //Порт сервера
         public static string userName; //Имя,отображаемое в сообщении
 
+        public static string pathToFile;
+        public static byte[] imageData;
+        public static string findImage;
+        public static byte[] data;
+        public static BitmapImage mitmapFromDB;
+        public static bool statusImage;
+
         /// <summary>
         /// Старт программы
         /// </summary>
@@ -40,19 +50,54 @@ namespace Chat
             //Вид имени Фамилии профиля в зависимости от его длины
             if((Login.fname + " " + Login.lname).Length >= 16)
             {
-                profileBut.Content = Login.fname + "\n" + Login.lname;
+                profileBut.Content = Login.fname + "\n" + Login.lname + "\n" + "@" + Login.loginStat;
             }
             else
-                profileBut.Content = Login.fname + " " + Login.lname;
+                profileBut.Content = Login.fname + " " + Login.lname + "\n" + "@" + Login.loginStat;
 
             userName =Login.fname; //имя для сообщения
 
-            logProfile.Content = "@"+Login.loginStat;//Логин
+            logProf.Content = "@"+Login.loginStat;//Логин
             nameBlock.Text = Login.fname;
             lnameBlock.Text = Login.lname;
-            logProf.Content = "@" + Login.loginStat;
             nameBox.Text = Login.fname;
             lnameBox.Text = Login.lname;
+
+            SearchImage();
+            if (findImage == null || findImage == "")
+            {
+                statusImage = false;
+
+                Image img = new Image();
+                img.Source = new BitmapImage(new Uri("Resources/noImage.png",UriKind.Relative));
+                img.UseLayoutRounding = true;
+                img.SnapsToDevicePixels = true;
+                img.Stretch = Stretch.Fill;
+                img.Width = 32;
+                img.Height = 32;
+                profileBut.Icon = img;
+
+                ImageBrush ib = new ImageBrush();
+                ib.ImageSource = new BitmapImage(new Uri("Resources/noImage.png", UriKind.Relative));
+                imgProfile.Fill = ib;
+
+            }
+            else
+            {
+                Image img = new Image();
+                img.Source = ImageOutDB(Login.loginStat);
+                img.UseLayoutRounding = true;
+                img.SnapsToDevicePixels = true;
+                img.Stretch = Stretch.Fill;
+                img.Width = 32;
+                img.Height = 32;
+                profileBut.Icon = img;
+                statusImage = true;
+
+                ImageBrush ib = new ImageBrush();
+                ib.ImageSource = ImageOutDB(Login.loginStat);
+                imgProfile.Fill = ib;
+            }
 
             connect();// Подключение к серверу
             clientThread = new Thread(listner);//Поток прослушки
@@ -131,7 +176,7 @@ namespace Chat
                 try
                 {
                     if (string.IsNullOrEmpty(messages[i])) continue;
-                    print(String.Format("{0}: {1}", messages[i].Split('~')[0], messages[i].Split('~')[1]));//отображение сообщения
+                    print(String.Format("{0}: {1} {2}", messages[i].Split('~')[0], messages[i].Split('~')[1], messages[i].Split('~')[2]));//отображение сообщения
                 }
                 catch { continue; }
             }
@@ -208,7 +253,7 @@ namespace Chat
         {
             try
             {
-                string data = writeMes.Text;//Получение текста из поля ввода
+                string data = writeMes.Text + "~"+ Login.loginStat;//Получение текста из поля ввода
                 if (string.IsNullOrEmpty(data)) return;
                 // Отправляем серверу комманду с сообщением
                 send("#newmsg&" + data);
@@ -281,10 +326,10 @@ namespace Chat
                 //Изменение имени в кнопке профиля
                 if ((nameBlock.Text + " " + lnameBlock.Text).Length >= 16)
                 {
-                    profileBut.Content = nameBlock.Text + "\n" + lnameBlock.Text;
+                    profileBut.Content = nameBlock.Text + "\n" + lnameBlock.Text + "\n" + "@" + Login.loginStat;
                 }
                 else
-                    profileBut.Content = nameBlock.Text + " " + lnameBlock.Text;
+                    profileBut.Content = nameBlock.Text + " " + lnameBlock.Text + "\n" + "@" + Login.loginStat;
             }
             
             //Закрыть текущее окно
@@ -315,20 +360,43 @@ namespace Chat
         /// </summary>
         /// <param name="sender">Объект</param>
         /// <param name="e">Событие</param>
-        private void imgProfileBtn_Click(object sender, RoutedEventArgs e)
+        public void imgProfileBtn_Click(object sender, RoutedEventArgs e)
         {
-            ImageBrush myBrush = new ImageBrush();//Переменная изображения
-            myBrush.ImageSource = new BitmapImage(new Uri("Resources/1.jpg", UriKind.Relative));
+
+
+            OpenFileDialog openF = new OpenFileDialog();
+            openF.Filter = "Text files(*.jpg, *.png)|*.jpg; *.png";
+            if (openF.ShowDialog() == true)
+            {
+                pathToFile = openF.FileName;
+            }
+
+
+            using (System.IO.FileStream fs = new System.IO.FileStream(pathToFile, System.IO.FileMode.Open))
+            {
+                imageData = new byte[fs.Length];
+                fs.Read(imageData, 0, imageData.Length);
+            }
+
+
+            SearchImage();
+            ProfileImage.ImageToDB(imageData);
+
+            
 
             Image img = new Image();
-            img.Source = new BitmapImage(new Uri("Resources/1.jpg", UriKind.Relative));
+            img.Source = ImageOutDB(Login.loginStat);
             img.UseLayoutRounding = true;
             img.SnapsToDevicePixels = true;
             img.Stretch = Stretch.Fill;
             img.Width = 32;
             img.Height = 32;
-            imgProfileBtn.Background = myBrush;
             profileBut.Icon = img;
+
+            ImageBrush bit = new ImageBrush();
+            bit.ImageSource = ImageOutDB(Login.loginStat);
+            imgProfile.Fill = bit ;
+            this.Show();
 
         }
 
@@ -338,10 +406,11 @@ namespace Chat
         /// <param name="msg">Сообщение</param>
         private void createMesBoard(string msg)
         {
-            
+            //MessageBox.Show(msg);
             string name = msg.Substring(0, msg.IndexOf(' '));//Первая часть соообщения - имя
+            string loginName = msg.Substring(msg.LastIndexOf(' ') + 1);
+
             name = name.Trim();//Удаление мусора
-            
             StackPanel messageSP = new StackPanel();//Стак панель, хранящая в себе имя и сообщение
             messageSP.Margin = new Thickness(0, 0, 0, 20);
             messageSP.VerticalAlignment = VerticalAlignment.Bottom;//Отображение сообщений внизу
@@ -358,7 +427,7 @@ namespace Chat
 
             //Блок сообщения
             TextBlock messageTB = new TextBlock();
-            messageTB.Text = msg.Substring(msg.IndexOf(' '));
+            messageTB.Text = msg.Substring(name.Length, msg.Length - loginName.Length - name.Length);
             messageTB.TextWrapping = TextWrapping.Wrap;
             messageTB.Margin = new Thickness(5, 0, 0, 0);
             messageTB.FontFamily = new FontFamily("Comic Sans MS");
@@ -366,7 +435,7 @@ namespace Chat
 
             //MessageBox.Show(lnameBox.Text);
             //MessageBox.Show(name);
-            if (name == nameBox.Text+":")
+            if (loginName == Login.loginStat)
             {
                 UserNameTB.HorizontalAlignment = HorizontalAlignment.Right;
                 messageTB.HorizontalAlignment = HorizontalAlignment.Right;
@@ -385,7 +454,13 @@ namespace Chat
             MaterialDesignThemes.Wpf.Chip btn = new MaterialDesignThemes.Wpf.Chip();
 
             Image img = new Image();
-            img.Source = new BitmapImage(new Uri("Resources/1.jpg", UriKind.Relative));
+            if(statusImage == false)
+                img.Source = new BitmapImage(new Uri("Resources/noImage.png", UriKind.Relative));
+            else
+            {
+                img.Source = ImageOutDB(loginName);
+            }
+            
             img.UseLayoutRounding = true;
             img.SnapsToDevicePixels = true;
             img.Stretch = Stretch.Fill;
@@ -401,6 +476,81 @@ namespace Chat
             messageSP.Children.Add(btn);
             //messageSP.Children.Add(messageTB);
             mesBoard.Children.Add(messageSP);
+        }
+
+        public BitmapImage ImageOutDB(string log)
+        {
+            dataBase.command = new MySql.Data.MySqlClient.MySqlCommand("select image from users where login = '" + log + "'", dataBase.connect);
+
+            dataBase.connect.Open();
+            dataBase.reader = dataBase.command.ExecuteReader();
+
+
+            while (dataBase.reader.Read())
+            {
+                data = (byte[])dataBase.reader[0];
+            }
+            dataBase.connect.Close();
+            using (var ms = new MemoryStream(data))
+            {
+                mitmapFromDB = new BitmapImage();
+                ms.Position = 0;
+                mitmapFromDB.BeginInit();
+                mitmapFromDB.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                mitmapFromDB.CacheOption = BitmapCacheOption.OnLoad;
+                mitmapFromDB.UriSource = null;
+                mitmapFromDB.StreamSource = ms;
+                mitmapFromDB.EndInit();
+            }
+            mitmapFromDB.Freeze();
+
+            return mitmapFromDB;
+        }
+
+        public void SearchImage()
+        {
+            dataBase.command = new MySql.Data.MySqlClient.MySqlCommand("select image from users where login = '" + Login.loginStat + "'", dataBase
+    .connect);
+            dataBase.connect.Open();
+            dataBase.reader = dataBase.command.ExecuteReader();
+            while (dataBase.reader.Read())
+            {
+                findImage = dataBase.reader[0].ToString();
+            }
+            dataBase.connect.Close();
+        }
+
+        private void media_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            MediaElement me = sender as MediaElement;
+            me.Position = TimeSpan.FromMilliseconds(1);
+        }
+
+        private void binomoBut_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://binomo.com/ru");
+        }
+
+        private void vaBankBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("http://vabank.casino/");
+        }
+
+        private void gaminatorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("http://online.geiminators.com/");
+        }
+
+
+        private void advertstringCheck_Click(object sender, RoutedEventArgs e)
+        {
+            if (advertstringCheck.IsChecked == true)
+            {
+                advertstring.Visibility = Visibility.Visible;
+            }
+            else
+                advertstring.Visibility = Visibility.Hidden;
+
         }
     }
 }

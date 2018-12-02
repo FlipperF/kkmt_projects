@@ -79,6 +79,7 @@
       <DependentUpon>Client.xaml</DependentUpon>
     </Compile>
     <Compile Include="dataBase.cs" />
+    <Compile Include="ProfileImage.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -136,6 +137,14 @@
   <ItemGroup>
     <Resource Include="Resources\1.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\87-1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\96-1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\168.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
