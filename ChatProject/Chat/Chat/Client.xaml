@@ -319,7 +319,7 @@
 
             <Grid>
 
-                <materialDesign:Chip HorizontalAlignment="Center" x:Name="profileBut" 
+                <materialDesign:Chip HorizontalAlignment="Center" x:Name="profileBut"  VerticalAlignment="Center"
                    Height="Auto" Width="149" Margin="5,0" Click="profileBut_Click" Style="{DynamicResource ChipStyle1}" />
             </Grid>
             <Label Content ="Chats" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="20" HorizontalAlignment="Center" Margin="48,0" Width="63"/>
