@@ -51,21 +51,30 @@ namespace Chat
         /// <param name="e">Событие</param>
         private void login_but_Click(object sender, RoutedEventArgs e)
         {
+            EnterProgram();
+        }
+
+       
+        /// <summary>
+        /// Функция входа в программу
+        /// </summary>
+        public void EnterProgram()
+        {
             string selectUser = ""; //Строка запроса поиска юзера
             string passStat = "";//Статус пароля
 
             //Не сработает при незаполненном поле
-            if (login_tb.Text != null && password_tb.Text != null)
+            if (login_tb.Text != null && password_tb.Password != null)
             {
                 dataBase.connect.Open();
                 //Поиск пользователя
-                selectUser = "select login, password, fname, lname from users where login = '" + login_tb.Text + "' and password = '" + password_tb.Text+"'";
+                selectUser = "select login, password, fname, lname from users where login = '" + login_tb.Text + "' and password = '" + password_tb.Password + "'";
                 dataBase.command = new MySqlCommand(selectUser, dataBase.connect);//Выполнение запроса
                 dataBase.reader = dataBase.command.ExecuteReader();//Ридер для чтения столбцов
                 //Получение данных пользователя
                 while (dataBase.reader.Read())
                 {
-                    loginStat = dataBase.reader[0].ToString(); 
+                    loginStat = dataBase.reader[0].ToString();
                     passStat = dataBase.reader[1].ToString();
                     fname = dataBase.reader[2].ToString();
                     lname = dataBase.reader[3].ToString();
@@ -92,7 +101,6 @@ namespace Chat
             }
         }
 
-       
         /// <summary>
         /// Клик по кнопки регистрации
         /// </summary>
@@ -116,6 +124,19 @@ namespace Chat
         {
             e.Cancel = true;
             Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// Вход в программу по нажатию Enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                EnterProgram();
+            }
         }
     }
 }

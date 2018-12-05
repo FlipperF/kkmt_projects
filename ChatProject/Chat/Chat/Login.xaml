@@ -8,7 +8,7 @@
         Title="MainWindow" Height="490" Width="400"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          WindowStartupLocation="CenterScreen" 
-        ResizeMode ="NoResize">
+        ResizeMode ="NoResize" KeyDown="Window_KeyDown">
     <Grid>
         <Grid Name="loginGrid">
             <Grid.RowDefinitions>
@@ -29,16 +29,16 @@
                     <ColumnDefinition Width="125*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Login" HorizontalContentAlignment="Right" VerticalAlignment="Center" FontSize="20" Margin="0,17,0,7" Height="38"></Label>
-                <TextBox Name="login_tb" VerticalContentAlignment="Center" Grid.Column="1" VerticalAlignment="Center"  Height="46" Margin="10,10,70,1" FontSize="18" FontFamily="Comic Sans MS"/>
+                <TextBox Name="login_tb" VerticalContentAlignment="Center" Grid.Column="1" VerticalAlignment="Center"  Height="46" Margin="10,10,70,1" FontSize="18" FontFamily="Comic Sans MS" MaxLength="16"/>
                 <Label Content="Password" Grid.Row="1" HorizontalContentAlignment="Right" VerticalAlignment="Center" FontSize="20" Margin="0,25,0,16" Height="40"></Label>
-                <TextBox Name="password_tb" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="46" Margin="10,10,70,0" FontSize="18" FontFamily="Comic Sans MS"/>
+                <PasswordBox Name="password_tb" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="46" Margin="10,10,70,0" FontSize="18" FontFamily="Comic Sans MS" MaxLength="16"/>
             </Grid>
             <Grid Grid.Row="3" Margin="0,37,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40*"/>
                     <RowDefinition Height="109*"/>
                 </Grid.RowDefinitions>
-                <Button Name ="openRegWinBut" Content="Registr" Margin="120,0,120,10" FontSize="16" Background="#00DDDDDD" BorderBrush="#00EA7676" Click="registerWInOpen" Foreground="#DD000000" Height="Auto"/>
+                <Button Name ="openRegWinBut" Content="Registr" Margin="120,0,120,10" FontSize="16" Background="#00DDDDDD" BorderBrush="#FF2196F3" BorderThickness="0,0,0,2" Click="registerWInOpen" Foreground="#DD000000" Height="Auto" HorizontalAlignment="Center"/>
                 <Button Name="login_but" Content="Login" Grid.Row="1" Margin="120,30" Click="login_but_Click" Height="Auto"></Button>
             </Grid>
         </Grid>

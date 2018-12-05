@@ -32,6 +32,6 @@
         <TextBox Name="loginTb" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" Height="40" Margin="10,10" FontSize="18" FontFamily="Comic Sans MS" ></TextBox>
         <TextBox Name="passwordTb" Grid.Row="4" Grid.Column="1"  VerticalAlignment="Center" Height="40" Margin="10,10" FontSize="18" FontFamily="Comic Sans MS" ></TextBox>
 
-        <Button Name ="regBut" Grid.Row="5" Content="Регистрация" Grid.Column="1" Margin="0,40,100,40" FontSize="18" Click="regBut_Click" RenderTransformOrigin="0.567,-0.975" Height="Auto"/>
+        <Button Name ="regBut" Grid.Row="5" Content="Registr" Grid.Column="1" Margin="40,40,140,40" FontSize="18" Click="regBut_Click" RenderTransformOrigin="0.567,-0.975" Height="Auto"/>
     </Grid>
 </Window>

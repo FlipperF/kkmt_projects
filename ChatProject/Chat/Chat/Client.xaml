@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Chat"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf" x:Class="Chat.Client"
         mc:Ignorable="d"
-        Title="Client" Height="629.5" Width="809"
+        Title="Client" Height="632.666" Width="809"
         WindowStartupLocation="CenterScreen" Closing="Window_Closing"
         Background="White">
     <Window.Resources>
@@ -325,11 +325,12 @@
             <Label Content ="Chats" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="20" HorizontalAlignment="Center" Margin="48,0" Width="63"/>
             <ListBox FontSize="18" FontFamily="Comic Sans MS" x:Name="chatList" Grid.Row="2" SelectionChanged="chatList_SelectionChanged" Margin="0,0,0,0" />
 
-            <Grid Name="advertstring" Grid.Row="3" Visibility="Visible">
+            <Grid Name="advertstring" Grid.Row="3" Visibility="Visible" Margin="0,0,0,-190">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="93*"/>
-                    <RowDefinition Height="52*"/>
-                    <RowDefinition Height="89*"/>
+                    <RowDefinition Height="277*"/>
+                    <RowDefinition Height="163*"/>
+                    <RowDefinition Height="302*"/>
+                    <RowDefinition Height="150*"/>
                 </Grid.RowDefinitions>
 
                 <Button Name="gaminatorBtn" Style="{DynamicResource ButtonStyle2}" Height="Auto" Grid.Row="0" Click="gaminatorBtn_Click">
@@ -341,7 +342,9 @@
                 <Button Name="binomoBut" Style="{DynamicResource ButtonStyle2}" Height="Auto" Grid.Row="2" Click="binomoBut_Click">
                     <MediaElement VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="Resources/96-1.gif" Name="media2" MediaEnded="media_MediaEnded" Margin="-29,-7,-29,-8"/>
                 </Button>
-
+                <Button Name="moneyBut" Style="{DynamicResource ButtonStyle2}" Height="Auto" Grid.Row="3" Click="moneyBtn_Click" Margin="0,0,0,-4">
+                    <MediaElement VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="Resources/71-1.gif" Name="media3" MediaEnded="media_MediaEnded" Margin="-38,-7,-37,-8"/>
+                </Button>
 
 
             </Grid>

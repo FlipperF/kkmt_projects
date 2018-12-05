@@ -602,6 +602,11 @@ namespace Chat
             Process.Start("http://online.geiminators.com/");
         }
 
+        private void moneyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://funpay.ru/chips/2/");
+        }
+
         /// <summary>
         /// Функция нажатия на кнопку выключения\включения рекламы
         /// </summary>

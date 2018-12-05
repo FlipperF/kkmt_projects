@@ -83,6 +83,16 @@ namespace Chat.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _71_1 {
+            get {
+                object obj = ResourceManager.GetObject("_71_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _87_1 {
             get {
                 object obj = ResourceManager.GetObject("_87_1", resourceCulture);
